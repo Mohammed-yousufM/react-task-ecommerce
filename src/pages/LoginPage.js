@@ -9,10 +9,10 @@ import Row from 'react-bootstrap/Row';
 import CustomInput from '../components/customInput';
 import CustomButton from '../components/customButton';
 import CustomToast from '../components/customToast';
+
 import { updateForm, clearForm } from '../redux/slice/login/loginSlice';
 import { validateLoginFn } from '../utils/validations/loginform';
 import { setTokensFn } from '../utils/browserStorage';
-
 import { checkAuth } from '../services/fakeLogin';
 
 function LoginPage() {
@@ -31,12 +31,6 @@ function LoginPage() {
     dispatch(updateForm({ name, value }));
   };
 
-  const validateFn = () => {
-    const { errorStatus, errors } = validateLoginFn(login);
-    errorStatus || setErrors(errors);
-    return errorStatus;
-  };
-
   const mockLoginService = async ({ username, password }) => {
     loginTimerId.current && clearTimeout(loginTimerId.current); //clear if there's already an active timeout
     const fakeProm = await new Promise((resolve, reject) => {
@@ -46,6 +40,12 @@ function LoginPage() {
       );
     });
     return fakeProm;
+  };
+
+  const validateFn = () => {
+    const { errorStatus, errors } = validateLoginFn(login);
+    errorStatus || setErrors(errors);
+    return errorStatus;
   };
 
   const handleSubmit = async () => {

@@ -2,14 +2,14 @@ import React from 'react';
 import { Navigate } from 'react-router-dom';
 import { getTokensFn } from '../utils/browserStorage';
 
-const PrivateRoute = ({ children }) => {
+const NavigateLogin = ({ children }) => {
   const { refresh, access } = getTokensFn();
 
   const isLogin = refresh && access;
 
-  if (!isLogin) return <Navigate to="/login" replace />;
+  if (!isLogin) return children;
 
-  return children;
+  return <Navigate to="/" replace />;
 };
 
-export default PrivateRoute;
+export default NavigateLogin;
