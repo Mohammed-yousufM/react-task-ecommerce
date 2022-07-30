@@ -1,7 +1,7 @@
 //setting up interceptors (for JWT auth) and defaults with axios
 //reference: https://dev.to/franciscomendes10866/how-to-use-axios-interceptors-b7d
 //reference: axios docs
-//Mohammed yousuf
+//Modified: Mohammed yousuf
 
 import axios from 'axios';
 import config from '../config/config.json';
