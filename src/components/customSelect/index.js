@@ -47,9 +47,19 @@ function CustomSelect({ options, onChangeSelection, setSearchTxt }) {
         options={formattedOptions}
         value={selectedValue}
         onChange={onChangeFn}
+        styles={customStyle}
       />
     </Col>
   );
 }
 
 export default CustomSelect;
+
+const customStyle = {
+  control: (provided, state) => ({
+    ...provided,
+    width: '100%',
+    margin: 0,
+    fontSize: 13,
+  }),
+};

@@ -1,10 +1,10 @@
 import React from 'react';
 import Button from 'react-bootstrap/Button';
 
-function CustomButton({ isLoading, btnTxt, handleClick }) {
+function CustomButton({ isLoading, btnTxt, handleClick, variant = 'primary' }) {
   return (
     <Button
-      variant="primary"
+      variant={variant}
       disabled={isLoading}
       onClick={!isLoading ? handleClick : null}
     >

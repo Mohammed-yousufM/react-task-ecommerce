@@ -11,13 +11,10 @@ export const itemsSlice = createSlice({
   initialState: { ...initialStateProto },
   reducers: {
     updateAllItems: (state, action) => {
-      console.log('update');
-
       const { data } = action.payload;
       return { ...state, allItems: [...data], itemsWithOutFilter: [...data] };
     },
     updateForFilter: (state, action) => {
-      console.log('calling');
       const { filteredData } = action.payload;
       return { ...state, allItems: [...filteredData] };
     },

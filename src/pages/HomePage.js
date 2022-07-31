@@ -29,7 +29,6 @@ function HomePage() {
   };
 
   const getProductsByCategoryFn = async (value) => {
-    console.log('execcc');
     const { success, data } = await getProductsByCategorySer({ value });
     success && dispatch(updateAllItems({ data }));
   };
