@@ -7,6 +7,7 @@ function CustomButton({ isLoading, btnTxt, handleClick, variant = 'primary' }) {
       variant={variant}
       disabled={isLoading}
       onClick={!isLoading ? handleClick : null}
+      size="sm"
     >
       {isLoading ? 'Loading…' : btnTxt}
     </Button>

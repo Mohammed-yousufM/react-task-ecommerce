@@ -2,8 +2,7 @@ import httpService from './httpService';
 
 class Services {
   reqLogin({ username, password }) {
-    //didn't use
-    return httpService.post('login', { username, password });
+    return httpService.post('login', { username, password }); //didn't use
   }
   reqNewAccesToken({ refreshToken }) {
     return httpService.post('user/refresh', { refreshToken });

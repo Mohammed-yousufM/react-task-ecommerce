@@ -11,7 +11,7 @@ function CustomBar({ getSearchRes, options, onChangeSelection }) {
   };
 
   useEffect(() => {
-    searchTxt && getSearchRes(searchTxt);
+    getSearchRes(searchTxt);
   }, [searchTxt]);
 
   return (

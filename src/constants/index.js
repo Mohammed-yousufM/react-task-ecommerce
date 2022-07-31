@@ -1,6 +1,6 @@
 export const LOGINS = {
-  USERNAME: 'silc',
-  PASSWORD: 'silc',
+  USERNAME: 'react',
+  PASSWORD: 'react',
 };
 
 export const CATEGORY_ALL = {

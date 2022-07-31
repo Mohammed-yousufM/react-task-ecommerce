@@ -25,3 +25,20 @@ export const setTokensFn = ({ access, refresh }) => {
   setUserBrowserStorage('tokens', tokens);
   return;
 };
+
+export const getBookmarksFn = () => {
+  const bookmarks = JSON.parse(getUserBrowserStorage('bookmarks'));
+  return {
+    bookmarks: bookmarks?.bookmarks || [],
+    bookmarkIds: bookmarks?.bookmarkIds || [],
+  };
+};
+
+export const setBookmarksFn = ({ newBookmarks, newIds }) => {
+  const bookmarks = JSON.stringify({
+    bookmarks: newBookmarks,
+    bookmarkIds: newIds,
+  });
+  setUserBrowserStorage('bookmarks', bookmarks);
+  return;
+};

@@ -19,21 +19,43 @@ function NavBar() {
     navigate('/login', { replace: true });
   };
 
+  const handleBookmark = () => {
+    navigate('/bookmarks', { replace: true });
+  };
+
   return (
-    <Navbar bg="light" expand="lg">
+    <Navbar bg="secondary" variant="dark" expand="lg">
       <Container>
-        <Navbar.Brand onClick={() => navigate('/')}>My-App</Navbar.Brand>
-        <Navbar.Toggle aria-controls="basic-navbar-nav" />
+        <Navbar.Brand
+          onClick={() => navigate('/')}
+          style={{ cursor: 'pointer', fontWeight: 600, color: '#fff' }}
+        >
+          APP-HOME
+        </Navbar.Brand>
+        <Navbar.Toggle
+          aria-controls="basic-navbar-nav"
+          // className="navbar-dark text-light"
+        />
         <Navbar.Collapse
           id="basic-navbar-nav"
-          className="d-lg-flex flex-sm-row-reverse"
+          className="d-lg-flex flex-row justify-content-end"
         >
-          <Nav className="mt-2 mt-lg-0">
+          <Nav className="mt-2 mt-lg-0 ms-2 me-2">
+            {isLogin ? (
+              <CustomButton
+                isLoading={false}
+                btnTxt="Bookmarks"
+                variant="outline-light"
+                handleClick={handleBookmark}
+              />
+            ) : null}
+          </Nav>
+          <Nav className="mt-2 mt-lg-0 ms-2 me-2">
             {isLogin ? (
               <CustomButton
                 isLoading={false}
                 btnTxt="Logout"
-                variant="outline-primary"
+                variant="outline-light"
                 handleClick={handleLogout}
               />
             ) : null}

@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import Container from 'react-bootstrap/Container';
@@ -17,11 +17,19 @@ import {
   updateCategories,
   clearData,
 } from '../redux/slice/items/itemsSlice';
+import { getBookmarksFn } from '../utils/browserStorage';
+import { addToBookmarkFn } from '../utils/helperFns/bookmarkHepFns';
 import { CATEGORY_ALL } from '../constants';
 
 function HomePage() {
   const dispatch = useDispatch();
   const items = useSelector((store) => store.items);
+  const [bookmarkIdsState, setBookmarkIdsState] = useState([]);
+
+  useEffect(() => {
+    const { bookmarkIds } = getBookmarksFn();
+    setBookmarkIdsState(bookmarkIds);
+  }, []);
 
   const getAllProductsFn = async () => {
     const { success, data } = await getAllProductsSer();
@@ -45,6 +53,17 @@ function HomePage() {
     });
 
     dispatch(updateForFilter({ filteredData }));
+  };
+
+  const onClickBookMark = ({ each, isBookmarked }) => {
+    const { bookmarks: oldBookMarks, bookmarkIds: oldIds } = getBookmarksFn();
+    const { newIds } = addToBookmarkFn({
+      each,
+      isBookmarked,
+      oldBookMarks,
+      oldIds,
+    });
+    setBookmarkIdsState(newIds);
   };
 
   const onChangeSelection = (value) => {
@@ -73,21 +92,27 @@ function HomePage() {
       />
       <Row
         xs={1}
-        sm={1}
+        sm={2}
         md={2}
         lg={3}
         xl={4}
         xxl={5}
         className="g-4 mt-2 mb-2 d-flex align-items-stretch"
       >
-        {items.allItems?.map((each) => (
-          <CustomCard
-            key={each?.id}
-            title={each?.title}
-            body={each?.description}
-            imgSrc={each?.image}
-          />
-        ))}
+        {items.allItems?.map((each) => {
+          const isBookmarked = bookmarkIdsState.includes(each.id);
+          return (
+            <CustomCard
+              key={each?.id}
+              each={each}
+              title={each?.title}
+              body={each?.description}
+              imgSrc={each?.image}
+              isBookmarked={isBookmarked || false}
+              onClickBookMark={onClickBookMark}
+            />
+          );
+        })}
       </Row>
     </Container>
   );

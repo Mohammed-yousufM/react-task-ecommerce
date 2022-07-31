@@ -7,6 +7,7 @@ import LoginPage from '../pages/LoginPage.js';
 import HomePage from '../pages/HomePage.js';
 import NotFound from '../pages/NotFound.js';
 import NavBar from '../pages/NavBar.js';
+import BookmarksPage from '../pages/BookmarksPage.js';
 
 function CustomRoutes() {
   return (
@@ -18,6 +19,14 @@ function CustomRoutes() {
           element={
             <PrivateRoute>
               <HomePage />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/bookmarks"
+          element={
+            <PrivateRoute>
+              <BookmarksPage />
             </PrivateRoute>
           }
         />
