@@ -13,7 +13,7 @@ function CustomInput({
   okay = '',
 }) {
   return (
-    <Form.Group as={Col} md="4" controlId={label}>
+    <Form.Group as={Col} md="4" controlId={label} className="ps-2">
       <Form.Label>{label}</Form.Label>
       <Form.Control
         name={name}

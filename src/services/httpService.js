@@ -9,10 +9,10 @@ import { refreshTokenFn } from './getAccessToken';
 
 const handleReq = async (config) => {
   const tokens = JSON.parse(localStorage.getItem('tokens'));
-  if (tokens?.accessToken) {
+  if (tokens?.access) {
     config.headers = {
       ...config.headers,
-      authorization: `Bearer ${tokens?.accessToken}`, //adding JWT to req header
+      authorization: `Bearer ${tokens?.access}`, //adding JWT to req header
     };
   }
   return config;
@@ -31,11 +31,11 @@ const handleResError = async (error) => {
     config.sent = true;
 
     //get new accesstoken and replay the failed request
-    const result = await refreshTokenFn();
-    if (result?.accessToken) {
+    const tokens = await refreshTokenFn();
+    if (tokens?.access) {
       config.headers = {
         ...config.headers,
-        authorization: `Bearer ${result?.accessToken}`,
+        authorization: `Bearer ${tokens?.access}`,
       };
     }
     return axios(config);

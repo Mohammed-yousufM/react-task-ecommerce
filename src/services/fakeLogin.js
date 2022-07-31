@@ -1,8 +1,8 @@
-import { logins } from '../constants';
+import { LOGINS } from '../constants';
 
 export const checkAuth = ({ username, password, resolve, reject }) => {
-  const usernameOk = username === logins.username;
-  const passwordOk = password === logins.password;
+  const usernameOk = username === LOGINS.USERNAME;
+  const passwordOk = password === LOGINS.PASSWORD;
   if (usernameOk && passwordOk) {
     resolve({
       data: {
